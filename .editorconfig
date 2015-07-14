@@ -1,0 +1,13 @@
+root = true
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.pm]
+indent_style = space
+indent_size = 4
+
+[*.t]
+indent_style = space
+indent_size = 4
