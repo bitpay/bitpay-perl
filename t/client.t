@@ -8,6 +8,7 @@ use JSON::Parse 'parse_json';
 use JSON 'decode_json';
 use Business::OnlinePayment::BitPay::KeyUtils;
 use URI;
+use lib 'lib';
 
 BEGIN{
     my $tokensResponse = '{"data":[{"policies":[{"policy":"id", "method":"inactive", "params":["TfFkHfxvFx7wvLtnqrudrZRqPEuwCpE8X9L"]}], "token":"DCvbrN5iXzo4X4s4bgBiDjS624o72MVQfacoghGWhCqz", "dateCreated":1436809787782, "pairingExpiration":1436896187782, "pairingCode":"Hgi0Tys"}]}';
