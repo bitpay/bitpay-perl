@@ -1,2 +1,2 @@
 language: perl
-perl: "5.20"
+perl: "5.20.2"
