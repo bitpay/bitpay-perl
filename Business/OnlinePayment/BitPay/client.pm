@@ -9,7 +9,6 @@ use LWP::Protocol::https;
 use Business::OnlinePayment::BitPay::KeyUtils;
 use JSON;
 use JSON::Parse 'parse_json';
-#use IO::Socket::SSL qw(debug3);
 require IO::Socket::SSL;
 use Net::SSLeay;
 use Data::Dumper;
@@ -61,7 +60,10 @@ sub post{
         $request->header('X-Signature' => $signature, 'X-Identity' => $pubkey);
     }
     my $response = $ua->request($request);
-    return $response;
+    return $response if $response->is_success;
+    my $code = $response->code;
+    my $error = decode_json($response->content)->{'error'};
+    croak "$code: $error"; 
 }
 
 sub process_response{
@@ -84,6 +86,7 @@ sub pair_client{
 sub pair_pos_client{
     my $self = shift;
     $code = $_[0];
+    croak "BitPay Error: Pairing Code is not legal" unless $code =~ /^\w{7}$/;
     my $id = $self->{'id'};
     my $content = {pairingCode => $code, id => $id};
     my $response = post($self, path => "tokens", params => $content);

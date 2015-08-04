@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 8;
+use Test::More tests => 10;
 use Test::Exception;
 use Test::Builder::Tester;
 use Test::Builder::Tester::Color;
@@ -39,6 +39,12 @@ BEGIN{
                         [ 'Content-Type' => 'application/json' ],
                         [ $tokensResponse ]
                     ]
+                } else {
+                    [
+                        500,
+                        [ 'Content-Type' => 'application/json' ],
+                        [ '{"error":"something has certainly gone wrong"}' ]
+                    ]
                 }
             } elsif ($method eq "GET") {            
                 if( $uri->path eq '/tokens' ){
@@ -66,7 +72,7 @@ BEGIN{
     $opt{"apiUri"} = $uri;
     use_ok('Business::OnlinePayment::BitPay::Client');
     ok(Business::OnlinePayment::BitPay::Client->new(%opt), "accept new with pem passed");
-    throws_ok(sub { Business::OnlinePayment::BitPay::Client->new() }, qr/no pem passed to constructor/);
+    throws_ok(sub { Business::OnlinePayment::BitPay::Client->new() }, qr/no pem passed to constructor/, "catches no pem passed to constructor");
     my $client = Business::OnlinePayment::BitPay::Client->new(%opt);
     my @response = $client->pair_client;
     my $pairing = shift(shift(@response))->{'pairingCode'};
@@ -85,6 +91,9 @@ BEGIN{
     my $params = {token => "thisisatoken", facade => "pos"};
     my $response = $client->post(path => "postthis", params => $params);
     is($response->content, '{"facade":"correct", "token":"correct"}', "post formatted correctly");
-    $client->pair_client(facade => "pos")
+    $client->pair_client(facade => "pos");
+    throws_ok(sub { $client->pair_pos_client("abc2") }, qr/Pairing Code is not legal/, "catches incorrect pairing code");
+    throws_ok(sub { $client->pair_pos_client("abc2eFGG") }, qr/Pairing Code is not legal/, "catches incorrect pairing code");
+    throws_ok(sub { $client->post(path => "badendpoint", params => {}) }, qr/500: something has certainly gone wrong/, "passes along server errrors");
 }
 

@@ -8,6 +8,10 @@ indent_size = 4
 indent_style = space
 indent_size = 4
 
+[*.pl]
+indent_style = space
+indent_size = 4
+
 [*.t]
 indent_style = space
 indent_size = 4
