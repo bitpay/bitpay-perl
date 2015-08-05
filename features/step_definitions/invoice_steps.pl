@@ -7,8 +7,6 @@ use lib 'lib';
 use Test::More;
 use Test::BDD::Cucumber::StepFile;
 use Business::OnlinePayment::BitPay::Client;
-use WWW::Mechanize::PhantomJS;
-use Data::Dumper;
 use Try::Tiny;
 use Env;
 require Business::OnlinePayment::BitPay::KeyUtils;
