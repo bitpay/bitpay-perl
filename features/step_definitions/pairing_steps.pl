@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use lib 'lib';
 use Test::More;
 use Test::BDD::Cucumber::StepFile;
 use Business::OnlinePayment::BitPay::Client;
@@ -16,7 +17,7 @@ require 'features/step_definitions/helpers.pl';
 my $pairingCode;
 my $client;
 my $token;
-my $error;
+our $error;
 my $pem;
 my $uri;
 
