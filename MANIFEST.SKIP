@@ -1,0 +1,10 @@
+\.vagrant*
+\.git
+.*\.swp
+manifest.pl
+\.editorconfig
+\.travis.yml
+.*\.bak
+.*\.SKIP
+Vagrantfile
+vagrantsh.sh

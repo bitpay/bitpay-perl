@@ -2,7 +2,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME            => 'Business::OnlinePayment::BitPay::Client',
-    VERSION         => '2.1',
+    VERSION_FROM    => 'lib/Business/OnlinePayment/BitPay/Client.pm',
     PREREQ_PM       => {
         'Carp' => '0',
         'Mozilla::CA' => '0',
@@ -19,6 +19,9 @@ WriteMakefile(
         'String::Interpolate' => '0',
         'Test::BDD::Cucumber::Loader' => '0',
         'Test::BDD::Cucumber::StepFile' => '0'
-    }
+    },
+    ABSTRACT       => 'Fast, flexible connector for the BitPay API',
+    AUTHOR         => 'Paul Daigle',
+    LICENSE        => 'mit'
 );
 
