@@ -1,5 +1,5 @@
 package Business::OnlinePayment::BitPay::Client;
-$VERSION = '2.3.0';
+$VERSION = '2.3.1';
 
 use Carp;
 use warnings;
