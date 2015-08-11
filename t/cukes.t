@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 if( defined $ENV{BITPAYPEM} ) {
-    print "HELLS YEAH";
     # This will find step definitions and feature files in the directory you point
     # it at below
     use Test::BDD::Cucumber::Loader;
