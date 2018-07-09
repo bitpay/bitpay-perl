@@ -111,7 +111,7 @@ Response will be a hash with information on your newly created invoice. Send you
 }
 ```
 
-There are many options available when creating invoices, which are listed in the [BitPay API documentation](https://bitpay.com/bitcoin-payment-gateway-api).
+There are many options available when creating invoices, which are listed in the [BitPay API documentation](https://bitpay.com/api).
 
 ### Get invoice status
 The perl library provides a method for fetching an existing invoice:
