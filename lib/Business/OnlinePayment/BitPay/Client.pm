@@ -41,7 +41,6 @@ sub _create_ua {
         verify_hostname => 0,
         SSL_ca_file     => Mozilla::CA::SSL_ca_file(),
         SSL_Version     => 'TLSv12',
-        SSL_verify_mode => IO::Socket::SSL::SSL_VERIFY_NONE
     );
     return $ua;
 }
